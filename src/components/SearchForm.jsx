@@ -30,10 +30,12 @@ const SearchForm = () => {
     let allData = [];
     let currentPage = 1;
     let totalPages;
+    const now = new Date();
+    const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
   
     do {
       const res = await Http.get(
-        `https://api.ivao.aero/v2/tracker/sessions?userId=${tempVid}&callsign=${tempAtcPosition}&from=&to=&connectionType=ATC&page=${currentPage}&perPage=10`
+        `https://api.ivao.aero/v2/tracker/sessions?userId=${tempVid}&callsign=${tempAtcPosition}&from=&to=&connectionType=ATC&page=${currentPage}&perPage=10&from=${threeMonthsAgo}`
       );
   
       if (!totalPages) {
